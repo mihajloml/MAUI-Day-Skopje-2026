@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Windows Machine": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    },
+    "iPhone 17 Simulator": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

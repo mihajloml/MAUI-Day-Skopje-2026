@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PageLifecycleLab.MainPage"
+             Title="Page Lifecycle Lab"
+             BackgroundColor="#F6F8FB">
+
+    <Grid RowDefinitions="Auto,*">
+        <Border StrokeThickness="0"
+                BackgroundColor="#FFFFFF"
+                Padding="20,16"
+                Margin="20,12,20,8"
+                StrokeShape="RoundRectangle 24">
+            <VerticalStackLayout Spacing="12">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Page Lifecycle Lab"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="#17324D" />
+                    <Label Text="Observe a MAUI page from construction to garbage collection."
+                           FontSize="14"
+                           TextColor="#516173" />
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                    <Button Grid.Row="0" Grid.Column="0"
+                            Text="Open Lifecycle Page"
+                            Clicked="OnOpenLifecyclePageClicked"
+                            FontAttributes="Bold"
+                            FontSize="13"
+                            HeightRequest="46"
+                            BackgroundColor="#17324D"
+                            TextColor="White"
+                            CornerRadius="12" />
+                    <Button Grid.Row="0" Grid.Column="1"
+                            Text="Force GC"
+                            Clicked="OnForceGcClicked"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            HeightRequest="46"
+                            BackgroundColor="#CC5B2F"
+                            TextColor="White"
+                            CornerRadius="12" />
+                    <Button Grid.Row="1" Grid.Column="0"
+                            Text="Raise App Event"
+                            Clicked="OnRaiseAppEventClicked"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            HeightRequest="46"
+                            BackgroundColor="#2E8B57"
+                            TextColor="White"
+                            CornerRadius="12" />
+                    <Button Grid.Row="1" Grid.Column="1"
+                            Text="Clear Log"
+                            Clicked="OnClearLogClicked"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            HeightRequest="46"
+                            BackgroundColor="#DDE4ED"
+                            TextColor="#17324D"
+                            CornerRadius="12" />
+                </Grid>
+
+                <Border x:Name="StatusCard"
+                        StrokeThickness="0"
+                        BackgroundColor="#E8EEF5"
+                        Padding="12,10"
+                        StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="*,Auto"
+                          RowDefinitions="Auto,Auto"
+                          ColumnSpacing="10"
+                          RowSpacing="4">
+                        <Label x:Name="AliveStatusLabel"
+                               Grid.ColumnSpan="2"
+                               Text="Last Page Alive: Not tracked"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#17324D" />
+                        <Label x:Name="TrackedIdLabel"
+                               Grid.Row="1"
+                               Text="Last tracked page: -"
+                               FontSize="13"
+                               TextColor="#405262" />
+                        <Label x:Name="SubscriberCountLabel"
+                               Grid.Row="1"
+                               Grid.Column="1"
+                               Text="Global event subscriber count: 0"
+                               FontSize="13"
+                               HorizontalTextAlignment="End"
+                               TextColor="#405262" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </Border>
+
+        <Border Grid.Row="1"
+                StrokeThickness="0"
+                BackgroundColor="#FFFFFF"
+                Padding="0"
+              Margin="20,0,20,16"
+                StrokeShape="RoundRectangle 24">
+            <Grid RowDefinitions="Auto,*">
+                <Label Text="Demo Log"
+                  Padding="20,16,20,8"
+                  FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="#17324D" />
+
+                <CollectionView x:Name="LogView"
+                                Grid.Row="1"
+                        Margin="16,0,16,16"
+                                SelectionMode="None"
+                                ItemsLayout="VerticalList">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeThickness="0"
+                                    Margin="0,0,0,8"
+                                    Padding="14,10"
+                                    BackgroundColor="#F6F8FB"
+                                    StrokeShape="RoundRectangle 12">
+                                <Label Text="{Binding .}"
+                                       FontFamily="Courier New"
+                                       FontSize="14"
+                                       TextColor="#243847"
+                                       LineBreakMode="WordWrap" />
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PageLifecycleLab - Run on active iOS simulator",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "cd \"${workspaceFolder}/PageLifecycleLab\" && ACTIVE_SIM_UDID=$(xcrun simctl list devices booted | awk -F '[()]' '/iPhone|iPad/ { print $2; exit }') && if [ -z \"$ACTIVE_SIM_UDID\" ]; then echo 'No booted iOS simulator found.'; exit 1; fi && dotnet build -t:Run -f net10.0-ios -p:_DeviceName=:v2:udid=$ACTIVE_SIM_UDID"
+    },
+    {
+      "name": "PageLifecycleLab - MAUI debugger",
+      "type": "maui",
+      "request": "launch",
+      "preLaunchTask": "maui: Build",
+      "project": "${workspaceFolder}/PageLifecycleLab/PageLifecycleLab.csproj",
+      "configuration": "Debug",
+      "targetFramework": "net10.0-ios",
+      "device": "iPhone 17"
+    }
+  ]
+}

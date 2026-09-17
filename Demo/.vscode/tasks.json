@@ -1,0 +1,37 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "maui: Build",
+      "type": "shell",
+      "command": "dotnet build -f net10.0-ios",
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/PageLifecycleLab"
+      }
+    },
+    {
+      "label": "Run on active iOS simulator",
+      "type": "shell",
+      "command": "ACTIVE_SIM_UDID=$(xcrun simctl list devices booted | awk -F '[()]' '/iPhone|iPad/ { print $2; exit }') && if [ -z \"$ACTIVE_SIM_UDID\" ]; then echo 'No booted iOS simulator found.'; exit 1; fi && dotnet build -t:Run -f net10.0-ios -p:_DeviceName=:v2:udid=$ACTIVE_SIM_UDID",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/PageLifecycleLab"
+      }
+    }
+  ]
+}

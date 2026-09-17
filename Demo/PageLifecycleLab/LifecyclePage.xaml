@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PageLifecycleLab"
+             x:Class="PageLifecycleLab.LifecyclePage"
+             Title="Lifecycle Page"
+             BackgroundColor="#FFFDF8">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="22,20,22,32"
+                             Spacing="18">
+            <VerticalStackLayout Spacing="4">
+                <Label Text="Lifecycle Page"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       TextColor="#17324D" />
+                <Label Text="Page instance under observation"
+                       FontSize="15"
+                       TextColor="#5D6875" />
+            </VerticalStackLayout>
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="#17324D"
+                    Padding="20"
+                    StrokeShape="RoundRectangle 24">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Page Name"
+                           FontSize="14"
+                           TextColor="#C7D4E2" />
+                    <Label x:Name="PageNameLabel"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                    <Label Text="Instance ID"
+                           FontSize="14"
+                           TextColor="#C7D4E2" />
+                    <Label x:Name="InstanceIdLabel"
+                           FontSize="34"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="#FFFFFF"
+                    Padding="18"
+                    StrokeShape="RoundRectangle 20">
+                <VerticalStackLayout Spacing="14">
+                    <local:LoggedLabel Text="Managed MAUI controls"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       TextColor="#17324D" />
+
+                    <local:LoggedEntry x:Name="DemoEntry"
+                                       Placeholder="I will become a native control"
+                                       FontSize="18"
+                                       BackgroundColor="#F4F7FA" />
+
+                    <local:LoggedButton x:Name="DemoButton"
+                                        Text="Native Button"
+                                        FontAttributes="Bold"
+                                   FontSize="15"
+                                   HeightRequest="42"
+                                        BackgroundColor="#DDE4ED"
+                                        TextColor="#17324D" />
+
+                    <Button Text="Modify Native Entry"
+                            Clicked="OnModifyNativeEntryClicked"
+                            FontAttributes="Bold"
+                         FontSize="15"
+                         HeightRequest="42"
+                            BackgroundColor="#2E8B57"
+                            TextColor="White"
+                         CornerRadius="12" />
+
+                    <Label Text="Detected native/platform type"
+                           FontAttributes="Bold"
+                           FontSize="16"
+                           TextColor="#17324D" />
+                    <Label x:Name="NativeTypeLabel"
+                           Text="Waiting for handler..."
+                           FontFamily="Courier New"
+                           FontSize="14"
+                           TextColor="#445665" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="#FFFFFF"
+                    Padding="18"
+                    StrokeShape="RoundRectangle 20">
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="Leak switches"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#17324D" />
+
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" RowSpacing="12">
+                        <Label Grid.Row="0"
+                               Text="Subscribe to static event"
+                               FontSize="17"
+                               TextColor="#243847"
+                               VerticalOptions="Center" />
+                        <Switch Grid.Row="0"
+                                Grid.Column="1"
+                                x:Name="StaticEventSwitch"
+                                Toggled="OnStaticEventToggled" />
+
+                        <Label Grid.Row="1"
+                               Text="Subscribe to native event"
+                               FontSize="17"
+                               TextColor="#243847"
+                               VerticalOptions="Center" />
+                        <Switch Grid.Row="1"
+                                Grid.Column="1"
+                                x:Name="NativeEventSwitch"
+                                Toggled="OnNativeEventToggled" />
+
+                        <Label Grid.Row="2"
+                               Text="Start timer"
+                               FontSize="17"
+                               TextColor="#243847"
+                               VerticalOptions="Center" />
+                        <Switch Grid.Row="2"
+                                Grid.Column="1"
+                                x:Name="TimerSwitch"
+                                Toggled="OnTimerToggled" />
+                    </Grid>
+
+                    <Label x:Name="TimerStatusLabel"
+                           Text="Timer stopped"
+                           FontFamily="Courier New"
+                           FontSize="14"
+                           TextColor="#445665" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="OnAppearing and OnDisappearing describe visibility and navigation. They are not garbage-collection boundaries."
+                   FontSize="14"
+                   TextColor="#5D6875" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

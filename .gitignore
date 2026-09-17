@@ -1,0 +1,29 @@
+bin/
+obj/
+
+# Visual Studio / VS Code local state
+.vs/
+.vscode/*.user
+.vscode/*.code-workspace
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+
+# NuGet packages
+packages/
+*.nupkg
+
+# MAUI / Xamarin generated artifacts
+*.apk
+*.aab
+*.app
+*.dSYM/
+*.ipa
+
+# macOS
+.DS_Store
+
+# JetBrains
+.idea/
